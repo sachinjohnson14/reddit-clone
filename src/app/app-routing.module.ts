@@ -9,8 +9,8 @@ const routes: Routes = [
     component: RedditListContainerComponent,
   },
   {
-    path: "subReddit",
-    component: RedditListItemComponent,
+    path: "**",
+    redirectTo: "",
   },
 ];
 
