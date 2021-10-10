@@ -7,6 +7,8 @@ import { RedditListItemComponent } from "./reddit-list-item/reddit-list-item.com
 import { RedditListContainerComponent } from "./reddit-list-container/reddit-list-container.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AppRoutingModule,
     HttpClientModule,
     NgxSpinnerModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

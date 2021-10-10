@@ -8,9 +8,25 @@ import { Observable } from "rxjs";
 export class RedditListContainerService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * API call to fetch reddit data
+   * @param redditUrl
+   * @param subReddit
+   * @param after
+   * @returns
+   */
   fetchRedditData(redditUrl, subReddit, after): Observable<any> {
-    return this.http.get(
-      `${redditUrl}/${subReddit}.json?limit=25&after=${after}`
-    );
+    let params = {};
+    if (after) {
+      params = {
+        limit: "25",
+        after: after,
+      };
+    } else {
+      params = {
+        limit: "25",
+      };
+    }
+    return this.http.get(`${redditUrl}/${subReddit}.json`, { params });
   }
 }
