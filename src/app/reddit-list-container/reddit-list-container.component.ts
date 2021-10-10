@@ -34,7 +34,6 @@ export class RedditListContainerComponent implements OnInit {
       .fetchRedditData(this.redditUrl, "r/aww", this.after)
       .subscribe(
         (data) => {
-          console.log("data", data);
           this.after = data.data.after;
           this.spinner.hide();
           data.data.children.forEach((child) => {
