@@ -8,7 +8,9 @@ import { Observable } from "rxjs";
 export class RedditListContainerService {
   constructor(private http: HttpClient) {}
 
-  fetchRedditData(redditUrl, subReddit): Observable<any> {
-    return this.http.get(`${redditUrl}/${subReddit}.json?limit=25`);
+  fetchRedditData(redditUrl, subReddit, after): Observable<any> {
+    return this.http.get(
+      `${redditUrl}/${subReddit}.json?limit=25&after=${after}`
+    );
   }
 }

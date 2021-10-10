@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { RedditList, SubRedditList } from "../common-interface";
 import { RedditListContainerService } from "./reddit-list-container.service";
@@ -22,6 +22,8 @@ export class RedditListContainerComponent implements OnInit {
       title: "r/funny",
     },
   ];
+  after: string = "";
+  subReddit: string;
   constructor(
     private rService: RedditListContainerService,
     private spinner: NgxSpinnerService
@@ -30,12 +32,13 @@ export class RedditListContainerComponent implements OnInit {
   ngOnInit() {}
 
   fetchRedditList(subReddit) {
-    this.redditList = [];
+    this.subReddit = subReddit;
     this.spinner.show();
     this.rService
-      .fetchRedditData(this.redditUrl, subReddit)
+      .fetchRedditData(this.redditUrl, subReddit, this.after)
       .subscribe((data) => {
         console.log("data", data);
+        this.after = data.data.after;
         this.spinner.hide();
         data.data.children.forEach((child) => {
           this.redditList.push({
@@ -46,5 +49,13 @@ export class RedditListContainerComponent implements OnInit {
           });
         });
       });
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      console.log("here");
+      this.fetchRedditList(this.subReddit);
+    }
   }
 }
