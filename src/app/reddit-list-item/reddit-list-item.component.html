@@ -1,0 +1,27 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Title</th>
+      <th scope="col">Subreddit Name</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of redditList; let i = index">
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <img
+          src="{{ data.thumbnail }}"
+          alt="{{ data.subreddit }} Thumbnail"
+          width="40"
+          height="40"
+        />
+      </td>
+      <a href="{{ data.link }}" target="_blank"
+        ><td>{{ data.title }}</td></a
+      >
+      <td>{{ data.subreddit }}</td>
+    </tr>
+  </tbody>
+</table>

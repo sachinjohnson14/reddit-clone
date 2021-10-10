@@ -1,0 +1,10 @@
+<div class="list-group" *ngFor="let list of subReddits">
+  <a class="list-group-item" (click)="fetchRedditList(list.title)">{{
+    list.title
+  }}</a>
+</div>
+
+<app-reddit-list-item
+  *ngIf="redditList.length"
+  [redditList]="redditList"
+></app-reddit-list-item>
